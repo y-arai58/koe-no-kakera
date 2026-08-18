@@ -130,9 +130,16 @@ function VoiceTimeline() {
     rec.onerror = (event) => {
       if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
         setNotice('マイクにつながりませんでした。ブラウザのマイクを許可すると声で残せます。')
-      } else if (event.error === 'no-speech') {
-        showToast('声が拾えませんでした。もう一度どうぞ')
+        stopRecording()
+        return
       }
+
+      if (event.error === 'no-speech') {
+        showToast('声が拾えませんでした。聞きなおしています')
+        return
+      }
+
+      setNotice('音声入力が中断されました。このまま文字で書くこともできます。')
       stopRecording()
     }
     rec.onend = () => {
