@@ -2,7 +2,7 @@
 
 声や文字で残した小さな出来事を、時刻ごとのタイムラインとして眺められる個人用の記録帳です。紙をちぎって重ねたような画面と、空・草花の切り絵風装飾で、日常の断片をやさしく残せる体験を目指しています。
 
-TanStack Start と React で構築しています。
+依存関係のない単一のHTMLファイルで構築しています。
 
 ## できること
 
@@ -16,19 +16,9 @@ TanStack Start と React で構築しています。
 
 ## はじめかた
 
-### 必要なもの
+### 起動
 
-- Node.js 20 以降
-- pnpm 10 以降
-
-### インストールと起動
-
-```bash
-pnpm install
-pnpm dev
-```
-
-起動後、[http://localhost:3000](http://localhost:3000) を開きます。
+[`index.html`](./index.html) をブラウザで開くだけで動きます。依存パッケージのインストールやビルドは不要です。
 
 ## 使い方
 
@@ -55,25 +45,9 @@ pnpm dev
 - 端末間の同期、アカウント、バックアップ機能は現時点ではありません。
 - 「文字でコピー」を使うと、記録をプレーンテキストとして外部に控えられます。
 
-## コマンド
-
-| コマンド | 内容 |
-| --- | --- |
-| `pnpm dev` | 開発サーバーを起動します。 |
-| `pnpm build` | 本番用のSSR・クライアントビルドを作成します。 |
-| `pnpm preview` | ビルド済みアプリをローカルで確認します。 |
-| `pnpm typecheck` | TypeScriptの型検査を実行します。 |
-
-リリース前の確認例です。
-
-```bash
-pnpm typecheck
-pnpm build
-```
-
 ## GitHub Pagesへの公開
 
-`main` ブランチへプッシュすると、GitHub Actionsが静的サイトをビルドしてGitHub Pagesへ自動公開します。公開URLは次のとおりです。
+`main` ブランチへプッシュすると、GitHub Actionsが `index.html` をGitHub Pagesへ自動公開します。公開URLは次のとおりです。
 
 ```text
 https://y-arai58.github.io/koe-no-kakera/
@@ -81,28 +55,12 @@ https://y-arai58.github.io/koe-no-kakera/
 
 GitHubのリポジトリ設定で **Settings → Pages → Source** を **GitHub Actions** に設定してください。独自ドメインを使う場合は、ドメイン取得後に同じ画面の **Custom domain** から設定します。
 
-## 技術構成
-
-- [TanStack Start](https://tanstack.com/start) — SSR対応のアプリケーション基盤
-- [TanStack Router](https://tanstack.com/router) — ファイルベースのルーティング
-- React 19
-- Vite
-- TypeScript
-
 ## 主なファイル
 
 ```text
-src/
-├── routes/
-│   ├── __root.tsx   # HTMLドキュメント、メタデータ、共通レイアウト
-│   └── index.tsx    # 記録帳の画面と操作
-├── router.tsx       # TanStack Routerの設定
-├── routeTree.gen.ts # 自動生成されるルート定義
-├── styles.css       # 紙の質感・切り絵装飾を含むスタイル
-└── vite-env.d.ts    # Viteの型定義
+index.html                         # アプリ本体（画面、スタイル、機能）
+.github/workflows/deploy-pages.yml # GitHub Pagesへの自動公開
 ```
-
-`src/routeTree.gen.ts` はルーティング用プラグインが生成するファイルです。手で編集せず、ルートファイルの追加・変更後に開発サーバーまたはビルドを実行して更新してください。
 
 ## ライセンス
 
