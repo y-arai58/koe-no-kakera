@@ -71,6 +71,16 @@ pnpm typecheck
 pnpm build
 ```
 
+## GitHub Pagesへの公開
+
+`main` ブランチへプッシュすると、GitHub Actionsが静的サイトをビルドしてGitHub Pagesへ自動公開します。公開URLは次のとおりです。
+
+```text
+https://y-arai58.github.io/koe-no-kakera/
+```
+
+GitHubのリポジトリ設定で **Settings → Pages → Source** を **GitHub Actions** に設定してください。独自ドメインを使う場合は、ドメイン取得後に同じ画面の **Custom domain** から設定します。
+
 ## 技術構成
 
 - [TanStack Start](https://tanstack.com/start) — SSR対応のアプリケーション基盤
